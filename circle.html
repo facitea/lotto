@@ -1,25 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <title>lotto</title>
     <style>
-        div{
+        div {
             float: left;
         }
-        #a, #b, #c, #d, #e, #f{
-        background-color:#86ef9d;
-        width:30px;
-        height:30px;
-        border-radius:30px;
-        text-align:center;
-        margin:0 auto;
-        font-size:12px;
-        vertical-align:middle;
-        line-height:28px;
+
+        #a,
+        #b,
+        #c,
+        #d,
+        #e,
+        #f {
+            background-color: #86ef9d;
+            width: 30px;
+            height: 30px;
+            border-radius: 30px;
+            text-align: center;
+            margin: 0 auto;
+            font-size: 12px;
+            vertical-align: middle;
+            line-height: 28px;
         }
     </style>
 </head>
+
 <body>
     <div id="a">a</div>
     <div id="b">b</div>
@@ -31,36 +39,37 @@
 
 
 
-</script>
+    </script>
     <script>
         function button1_click() {
-	        location.reload();
+            location.reload();
         }
 
-        var lotto = new Array();
-        
-        for (i=1; i<46; i++){
+        var lotto = [];
+
+        for (i = 1; i < 46; i++) {
             lotto.push(i);
         }
-        
-        var pick = new Array();
 
-        while(pick.length < 6){
-	        var picknum = lotto.splice(Math.floor(Math.random() * lotto.length),1)[0]
-	        pick.push(picknum)
+        var pick = [];
+
+        while (pick.length < 6) {
+            let picknum = lotto.splice(Math.floor(Math.random() * lotto.length), 1)[0]
+            pick.push(picknum)
         }
 
-        pick.sort(function(a, b) {
+        pick.sort(function (a, b) {
             return a - b;
         });
-        
-        document.getElementById("a").innerHTML=pick[0];
-        document.getElementById("b").innerHTML=pick[1];
-        document.getElementById("c").innerHTML=pick[2];
-        document.getElementById("d").innerHTML=pick[3];
-        document.getElementById("e").innerHTML=pick[4];
-        document.getElementById("f").innerHTML=pick[5];
+
+        document.getElementById("a").innerHTML = pick[0];
+        document.getElementById("b").innerHTML = pick[1];
+        document.getElementById("c").innerHTML = pick[2];
+        document.getElementById("d").innerHTML = pick[3];
+        document.getElementById("e").innerHTML = pick[4];
+        document.getElementById("f").innerHTML = pick[5];
 
     </script>
 </body>
+
 </html>
