@@ -5,70 +5,89 @@
     <meta charset="UTF-8">
     <title>lotto</title>
     <style>
-        div {
-            float: left;
+        .container {
+            display: flex;
+            width: 500px;
         }
 
-        #a,
-        #b,
-        #c,
-        #d,
-        #e,
-        #f {
-            background-color: #86ef9d;
-            width: 30px;
-            height: 30px;
-            border-radius: 30px;
+        .lottoCircle div {
+            font-size: 40px;
             text-align: center;
-            margin: 0 auto;
-            font-size: 12px;
-            vertical-align: middle;
-            line-height: 28px;
+        }
+
+        .lottoCircle {
+            background-color: #86ef9d;
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+
         }
     </style>
 </head>
 
 <body>
-    <div id="a">a</div>
-    <div id="b">b</div>
-    <div id="c">c</div>
-    <div id="d">d</div>
-    <div id="e">e</div>
-    <div id="f">f</div>
-    <button id="button1" onclick="button1_click();">번호 생성</button>
+    <header>
+        <h1>로또번호생성기</h1>
+    </header>
+    <div class="container">
+        <div class="lottoCircle">
+            <div id="lottoCircle0">&nbsp;</div>
+        </div>
+        <div class="lottoCircle">
+            <div id="lottoCircle1">&nbsp;</div>
+        </div>
+        <div class="lottoCircle">
+            <div id="lottoCircle2">&nbsp;</div>
+        </div>
+        <div class="lottoCircle">
+            <div id="lottoCircle3">&nbsp;</div>
+        </div>
+        <div class="lottoCircle">
+            <div id="lottoCircle4">&nbsp;</div>
+        </div>
+        <div class="lottoCircle">
+            <div id="lottoCircle5">&nbsp;</div>
+        </div>
+        <button id="refresh">번호 생성</button>
+    </div>
 
-
-
-    </script>
     <script>
-        function button1_click() {
-            location.reload();
+        const refreshBtn = document.getElementById('refresh');
+
+        refreshBtn.addEventListener("click", () => {
+            generateNewNumber();
         }
+        );
 
-        var lotto = [];
+        const generateNewNumber = () => {
+            const lottoBall = [];
 
-        for (i = 1; i < 46; i++) {
-            lotto.push(i);
+            for (i = 1; i < 46; i++) {
+                lottoBall.push(i);
+            }
+
+            const lottoPick = [];
+
+            while (lottoPick.length < 6) {
+                let lottoPicknum = lottoBall.splice(Math.floor(Math.random() * lottoBall.length), 1)[0]
+                lottoPick.push(lottoPicknum);
+            }
+
+            lottoPick.sort((a, b) => {
+                return a - b;
+            });
+
+            const lottoCircle = "lottoCircle";
+            const lottoCircleClassName = [];
+
+            for (let i = 0; i <= 5; i++) {
+                lottoCircleClassName.push(String(lottoCircle + i));
+            }
+
+            for (let i = 0; i < lottoCircleClassName.length; i++) {
+                document.getElementById(lottoCircleClassName[i]).innerHTML = lottoPick[i];
+            }
         }
-
-        var pick = [];
-
-        while (pick.length < 6) {
-            let picknum = lotto.splice(Math.floor(Math.random() * lotto.length), 1)[0]
-            pick.push(picknum)
-        }
-
-        pick.sort(function (a, b) {
-            return a - b;
-        });
-
-        document.getElementById("a").innerHTML = pick[0];
-        document.getElementById("b").innerHTML = pick[1];
-        document.getElementById("c").innerHTML = pick[2];
-        document.getElementById("d").innerHTML = pick[3];
-        document.getElementById("e").innerHTML = pick[4];
-        document.getElementById("f").innerHTML = pick[5];
-
     </script>
 </body>
 
